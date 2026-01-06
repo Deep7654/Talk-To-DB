@@ -1,0 +1,56 @@
+# .gitignore for talktoDB server (Node / Express)
+
+# Dependency directories
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+*.log
+
+# Runtime files
+pids/
+*.pid
+*.seed
+tmp/
+
+# Environment files (sensitive)
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+
+# Editor directories
+.vscode/
+.idea/
+
+# Coverage
+coverage/
+nyc_output/
+
+# Cache
+.cache/
+.parcel-cache/
+
+# Lockfiles (optional to ignore if you keep them in repo)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Docker
+docker-compose.override.yml
+
+# Misc
+*.tgz
+*.sqlite
+*.sqlite3
+
