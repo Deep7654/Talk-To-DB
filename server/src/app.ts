@@ -2,6 +2,9 @@ import express from "express"
 import cors from "cors"
 import cookiesParser from "cookie-parser"
 import routes from "./routes/index.js"
+import globalError from "./utils/globalError.js"
+import { apiLimiter } from "./utils/rateLimit.js"
+
 
 export const app = express()
 
@@ -17,7 +20,9 @@ app.use(express.urlencoded({ extended: true , limit: '16kb' }))
 
 //use cookie parser middleware to parse cookies  for secured routes and authentication
 app.use(cookiesParser())
+app.use(globalError)
+app.use(apiLimiter)
 
-//routes for login, signup, logout
+
 app.use("/api", routes)
 

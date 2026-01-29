@@ -1,12 +1,12 @@
 import "dotenv/config"
-import {app} from "./app.js"
+import { app } from "./app.js"
 import dbConnect from "./db/dbConnect.js"
 
 
 async function startServer() {
 
   //db connection
-  // await dbConnect()
+  await dbConnect()
 
   //start server
   app.listen(process.env.PORT, () => {

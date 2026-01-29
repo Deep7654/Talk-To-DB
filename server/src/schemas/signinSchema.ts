@@ -1,4 +1,9 @@
-import {z} from "zod";
+import {z, ZodEmail} from "zod";
+
+type SigninSchema = {
+    username: string | ZodEmail;
+    password: string ;
+}
 
 const validEmail = z.string()
     .email({message: "Invalid email address"});
@@ -12,6 +17,8 @@ const Username = z.string()
     .min(6, "Username must be at least 6 characters long")
 
 const signinSchema = z.object({
-    usernameOrEmail: Username.or(validEmail), 
+    username: Username.or(validEmail), 
     password: validPassword,
 });
+
+export default signinSchema;
