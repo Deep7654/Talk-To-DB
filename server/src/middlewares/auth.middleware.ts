@@ -1,7 +1,19 @@
+import {Request , Response , NextFunction} from "express"
+import asyncHandler from "../utils/asyncHandler.js"
 
-const auth = (req : any, res : any, next : any) => {
-  // Authentication logic here
-  next()
-}
 
-export default auth
+
+const authMiddleware  = asyncHandler((req : Request, res : Response, next : NextFunction)=>{
+        try{
+          console.log("Auth middleware")
+          next()
+        }catch(error){
+          console.log(error)
+          next(error)
+        }
+}) 
+
+export default authMiddleware
+
+
+
