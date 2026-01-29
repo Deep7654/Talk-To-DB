@@ -30,7 +30,7 @@ const globalError =  (error:any ,req: Request, res: Response, next: NextFunction
                     // Status code for the response
                     statuscode : 400,
                     // No data to return on error
-                    data: null
+                    data: error instanceof Error ? error.stack : null
                 }
             );
         // Pass error to next middleware (if any)

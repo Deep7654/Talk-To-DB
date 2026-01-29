@@ -1,13 +1,15 @@
 import Router from "express"
-import { signupConroller , logoutConroller , loginConroller } from "../controllers/user.controller.js"
-import auth from "../middlewares/auth.middleware.js"
+import { signupController , logoutController , loginController } from "../controllers/user.controller.js"
+import authMiddleware from "../middlewares/auth.middleware.js"
+import validate from "../middlewares/validate.middleware.js"
+import signinSchema from "../schemas/signinSchema.js"
+import { signupSchema } from "../schemas/signupSchema.js"
+
 
 const router = Router()
 
-    router.use("/login" , loginConroller)
-    router.post("/signup" , signupConroller)
-    router.post("/logout" , auth , logoutConroller)
-
-
+    router.use("/login" , validate(signinSchema) , loginController)
+    router.post("/signup" ,validate(signupSchema) , signupController)
+    router.post("/logout" , authMiddleware , logoutController)
 
 export default router;

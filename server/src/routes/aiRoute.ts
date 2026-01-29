@@ -1,11 +1,13 @@
 
-import router from "./index.js";
+import { Router } from "express";
+import aiChat from "../controllers/aichat.controller.js";
+import validate from "../middlewares/validate.middleware.js";
+import aiMsgSchema from "../schemas/aiMessageSchema.js";
+import authMiddleware from "../middlewares/auth.middleware.js";
 
-const aiRoute = async (req: any, res: any, next: any) => { 
 
-    router.post("/chat",  )
-    router.post("/query",  )
+const router = Router()
 
-}
+router.post("/chat", validate(aiMsgSchema), authMiddleware, aiChat)
 
-export default aiRoute;
+export default router;

@@ -6,10 +6,10 @@ import aiRoute from "./aiRoute.js"
 
 const router = Router()
 
+// index route for evrey routes 
 router.use("/user", UserRoute )
 router.use("/db" , dbConnectRoute) 
 router.use("/ai" , aiRoute)
-
 
 
 export default router

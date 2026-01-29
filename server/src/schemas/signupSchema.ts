@@ -6,7 +6,11 @@ const validUsername = z.string()
     .regex(/^[a-zA-Z0-9_]+$/, "Username can only contain letters, numbers, and underscores");
 
 const validEmail = z.string()
-    .email({message: "Invalid email address"});
+    .email({ message: "Invalid email address" });
+
+const validName = z.string()
+
+const validNumber = z.string().optional().describe("User phone number (optional)").nullable()
 
 const validPassword = z.string()
     .min(8, "Password must be at least 8 characters long")
@@ -19,4 +23,6 @@ export const signupSchema = z.object({
     username: validUsername,
     email: validEmail,
     password: validPassword,
+    name: validName,
+    number: validNumber
 });

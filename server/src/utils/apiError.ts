@@ -1,6 +1,14 @@
-
-export default class ApiError extends Error {
+interface IApiError{
     statusCode: number;
+    data: any;
+    success: boolean;
+    stack ? : string
+}
+
+export default class ApiError extends Error implements IApiError {
+    statusCode: number;
+    data: any;
+    success: boolean;
 
     constructor(
         statusCode: number,
@@ -8,6 +16,8 @@ export default class ApiError extends Error {
         stack?: string
     ) {
         super(message);
+        this.success = false;
+        this.data = null;
         this.statusCode = statusCode;
         if (stack) {
             this.stack = stack;
