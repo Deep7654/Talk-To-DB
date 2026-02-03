@@ -75,7 +75,7 @@ const refreshTokenController = asyncHandler(async (req: Request, res: Response, 
             path : "/api/user/refresh",
             maxAge : 7 * 24 * 60 * 60 * 1000
         })
-        
+      const users = 1;
         res.status(200).json(
             new ApiResponse(
                 true,
