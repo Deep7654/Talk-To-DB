@@ -61,7 +61,7 @@ const refreshTokenController = asyncHandler(async (req: Request, res: Response, 
             user.refreshToken = newRefreshToken;
             try{
                 await user.save();
-            }catch(dbError){
+            }catch(dbError : any ){
                 return next(new ApiError(400, "Error while saving refresh token" , dbError))
             }
         }
