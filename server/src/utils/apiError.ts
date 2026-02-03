@@ -13,11 +13,12 @@ export default class ApiError extends Error implements IApiError {
     constructor(
         statusCode: number,
         message = "Something went wrong",
-        stack?: string
+        stack?: string,
+        data? : any
     ) {
         super(message);
         this.success = false;
-        this.data = null;
+        this.data = data;
         this.statusCode = statusCode;
         if (stack) {
             this.stack = stack;
