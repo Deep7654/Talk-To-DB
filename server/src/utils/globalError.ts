@@ -14,23 +14,23 @@ import { Request , Response , NextFunction } from "express";
  */
 const globalError =  (error:any ,req: Request, res: Response, next: NextFunction) : void => {
         
-        // Log error header message to console
-        console.error("Globale Error Handler:"); 
-        // Log the actual error object for debugging purposes
-        console.error(error)
-        
+        const statusCode = error.statusCode || 500;
+        const message = error.message || "Internal Server Error";
+
+        console.error(`[Error] ${message}`);
+
         // Send HTTP 500 (Internal Server Error) response with JSON payload
-        res.status(500)
+        res.status(statusCode)
             .json(
                 {
                     // Indicates the request failed
                     success: false,
                     // Extract error message if it's an Error object, otherwise use generic message
-                    message: error instanceof Error ? error.message : "Internal Server Error",
+                    message: message,
                     // Status code for the response
-                    statuscode : 400,
+                    statuscode : statusCode,
                     // No data to return on error
-                    data: error instanceof Error ? error.stack : null
+                    data: error
                 }
             );
         // Pass error to next middleware (if any)
