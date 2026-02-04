@@ -10,11 +10,11 @@ export const app = express()
 
 //middlewares for parsing and cors
 app.use(cors({
-    origin: process.env.CORS_ORIGIN, // EXACT frontend origin
+    origin: process.env.CORS_ORIGIN, // frontend origin
     credentials: true,               // ALLOW cookies
   }))
 
-  // use json and urlencoded middlewares for parsing and set limit and get data in req.body
+// use json and urlencoded middlewares for parsing and set limit and get data in req.body
 app.use(express.json())
 app.use(express.urlencoded({ extended: true , limit: '16kb' }))
 
