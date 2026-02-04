@@ -45,7 +45,7 @@ const loginController = asyncHandler(
                 );
             }
 
-            const accessToken = generateAccessToken(user.email, user._id, user.tokenVersion , user.username);
+            const accessToken = generateAccessToken(user.email, user._id);
             const refreshToken = generateRefreshToken(user.email, user._id, user.tokenVersion );
             
             // save refresh token in database 

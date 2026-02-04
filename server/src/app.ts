@@ -20,9 +20,11 @@ app.use(express.urlencoded({ extended: true , limit: '16kb' }))
 
 //use cookie parser middleware to parse cookies  for secured routes and authentication
 app.use(cookiesParser())
-app.use(globalError)
 app.use(apiLimiter)
 
-
+//routes
 app.use("/api", routes)
+
+//global error handler
+app.use(globalError)
 

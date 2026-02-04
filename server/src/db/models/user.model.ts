@@ -14,7 +14,8 @@ interface IUser  {
     provider : string;
     providerId : string;
     isVerified : boolean;
-    webToken : string;
+    refreshToken : string;
+    tokenVersion : number;
 }
 
 const userSchema = new mongoose.Schema<IUser>({
@@ -42,7 +43,9 @@ const userSchema = new mongoose.Schema<IUser>({
     },
     isVerified: { type: Boolean, // default: false
     },
-    webToken: { type: String, // required: true
+    refreshToken: { type: String, // required: true
+    },
+    tokenVersion: { type: Number, default: 0
     },
     dbAccess: { type: mongoose.Schema.Types.ObjectId, ref: "DbAccess" 
     },
