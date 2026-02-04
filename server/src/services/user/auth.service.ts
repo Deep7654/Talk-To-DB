@@ -1,31 +1,32 @@
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { email } from "zod";
 
+// to hash password before saving to database
 const hashPassword = async (password: string) => {
     const salt = await bcryptjs.genSalt(10)
     const hashedPassword = await bcryptjs.hash(password, salt)
     return hashedPassword
 }
 
+// to compare password while login 
 const comparePassword = async (password: string, hashedPassword: string) => {
     return await bcryptjs.compare(password, hashedPassword)
 }
 
-const generateAccessToken = (email : string , userId : string , tokenVersion : number , username : string) => {
+// to generate access token
+const generateAccessToken = (email : string , userId : string  ) => {
     const payload = {
         id : userId,
-        email,
-        username,   
-        tokenVersion
+        email,  
     }
     return jwt.sign(payload,
          process.env.JWT_SECRET!,
           { 
-            expiresIn: '10m' 
+            expiresIn: '30m' 
         })
 }
 
+// to generate refresh token
 const generateRefreshToken = (email : string , userId : string , tokenVersion : number) => {
     const payload = {
         id : userId,
