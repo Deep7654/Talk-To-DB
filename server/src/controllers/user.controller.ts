@@ -124,4 +124,26 @@ const signupController = asyncHandler(
         }
     })
 
-export { loginController, logoutController, signupController };
+    const getNumberController = asyncHandler(
+        async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const user : any = req.user
+
+                // check user number is available or not
+                if(!user.number){
+                    return res.status(401).json(
+                        new ApiResponse(false, 401, "User Number Not Found")
+                    )
+                }
+                // return the number to frontend
+                res.status(200).json(
+                    new ApiResponse(true, 200, "User Number", {"number"  :  user?.number})
+                )
+            } catch (error) {
+                next(
+                    new ApiError(400, "Error while User Signup")
+                )
+            }
+        })
+
+export { loginController, logoutController, signupController , getNumberController };
