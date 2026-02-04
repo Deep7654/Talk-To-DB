@@ -30,7 +30,7 @@ const globalError =  (error:any ,req: Request, res: Response, next: NextFunction
                     // Status code for the response
                     statuscode : statusCode,
                     // No data to return on error
-                    data: error
+                    data: error.data
                 }
             );
         // Pass error to next middleware (if any)
