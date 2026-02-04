@@ -19,6 +19,6 @@ const Username = z.string()
 const signinSchema = z.object({
     username: Username.or(validEmail), 
     password: validPassword,
-});
+}).passthrough();
 
 export default signinSchema;
