@@ -1,6 +1,17 @@
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+type AccessTokenPayload = {
+    id : string,
+    email : string,
+}
+
+type RefreshTokenPayload = {
+    id : string,
+    email : string,
+    tokenVersion : number
+}
+
 // to hash password before saving to database
 const hashPassword = async (password: string) => {
     const salt = await bcryptjs.genSalt(10)
@@ -15,7 +26,7 @@ const comparePassword = async (password: string, hashedPassword: string) => {
 
 // to generate access token
 const generateAccessToken = (email : string , userId : string  ) => {
-    const payload = {
+    const payload : AccessTokenPayload = {
         id : userId,
         email,  
     }
@@ -28,7 +39,7 @@ const generateAccessToken = (email : string , userId : string  ) => {
 
 // to generate refresh token
 const generateRefreshToken = (email : string , userId : string , tokenVersion : number) => {
-    const payload = {
+    const payload : RefreshTokenPayload = {
         id : userId,
         email,
         tokenVersion

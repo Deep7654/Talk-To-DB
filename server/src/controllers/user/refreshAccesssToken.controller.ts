@@ -50,7 +50,7 @@ const refreshTokenController = asyncHandler(async (req: Request, res: Response, 
               )
         }
 
-        const newAccessToken = generateAccessToken(user.email, user._id, user.tokenVersion , user.username);
+        const newAccessToken = generateAccessToken(user.email, user._id);
 
         const REFRESH_ROTATION_WINDOW = 4 * 24 * 60 * 60 * 1000; // 4 days
         const tokenAgeMs = Date.now() - decodedToken.iat * 1000;
@@ -74,6 +74,14 @@ const refreshTokenController = asyncHandler(async (req: Request, res: Response, 
             sameSite : "lax",
             path : "/api/user/refresh",
             maxAge : 7 * 24 * 60 * 60 * 1000
+        })
+
+        res.cookie("accessToken" , newAccessToken , {
+            httpOnly : true,
+            secure : isProd,
+            sameSite : "lax",
+            path : "/",
+            maxAge : 1 * 60 * 60 * 1000
         })
       const users = 1;
         res.status(200).json(
