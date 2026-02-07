@@ -85,4 +85,4 @@ const aiChat = async ()=>{
 
 // aiChat().then(()=>console.log("done")).catch((err)=>console.error(err))
 
-export default aiChat;
+export{ aiChat};

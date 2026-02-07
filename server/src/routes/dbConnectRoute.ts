@@ -4,8 +4,8 @@ import router from "./index.js"
 
 const dbConnectRoute = async (req: any, res: any, next: any) => {
     // // Database connection logic here
-    // router.post("/Connect", auth , dbConnectController )
-    // router.post("/disconnect", auth , dbConnectController )
+    router.post("/Connect", auth )
+    router.post("/disconnect", auth)
     
 }
 

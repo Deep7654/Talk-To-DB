@@ -22,7 +22,7 @@ const generateAccessToken = (email : string , userId : string  ) => {
     return jwt.sign(payload,
          process.env.JWT_SECRET!,
           { 
-            expiresIn: '30m' 
+            expiresIn: '59m' 
         })
 }
 

@@ -16,6 +16,7 @@ interface IUser  {
     isVerified : boolean;
     refreshToken : string;
     tokenVersion : number;
+    connectionString : string;
 }
 
 const userSchema = new mongoose.Schema<IUser>({
@@ -34,6 +35,8 @@ const userSchema = new mongoose.Schema<IUser>({
     createdAt : { type : Date, default : Date.now
     },
     updatedAt : { type : Date, default : Date.now
+    },
+    connectionString : { type : String
     },
     isDbConnected : { type : Boolean, default : false
     },

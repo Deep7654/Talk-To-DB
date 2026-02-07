@@ -96,58 +96,58 @@
 // // }
 
 
-// // "use client";
+"use client";
 
-// // import { useState } from "react";
+import { useState } from "react";
 
-// // export default function SSETest() {
-// //   const [log, setLog] = useState<string[]>([]);
+export default function SSETest() {
+  const [log, setLog] = useState<string[]>([]);
 
-// //   const start = async () => {
-// //     setLog([]);
+  const start = async () => {
+    setLog([]);
 
-// //     const res = await fetch("http://localhost:4000/api/chat", {
-// //       method: "POST",
-// //       headers: { "Content-Type": "application/json" },
-// //       body: JSON.stringify({
-// //         messages: [{ role: "user", content: "Write a poem about the sea" }]
-// //       })
-// //     });
+    const res = await fetch("http://localhost:4000/api/user/agentChat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        message: [{ role: "user", content: "Write a poem about the sea" }]
+      })
+    });
 
-// //     const reader = res.body!.getReader();
-// //     const decoder = new TextDecoder();
+    const reader = res.body!.getReader();
+    const decoder = new TextDecoder();
 
-// //     let buffer = "";
+    let buffer = "";
 
-// //     while (true) {
-// //       const { value, done } = await reader.read();
-// //       if (done) break;
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
 
-// //       buffer += decoder.decode(value, { stream: true });
+      buffer += decoder.decode(value, { stream: true });
 
-// //       // Parse SSE frames
-// //       const parts = buffer.split("\n\n");
-// //       buffer = parts.pop()!;
+      // Parse SSE frames
+      const parts = buffer.split("\n\n");
+      buffer = parts.pop()!;
 
-// //       for (const part of parts) {
-// //         if (part.startsWith("data: ")) {
-// //           const json = part.replace("data: ", "");
-// //           const event = JSON.parse(json);
-// //           setLog(prev => [...prev, JSON.stringify(event)]);
-// //         }
-// //       }
-// //     }
-// //   };
+      for (const part of parts) {
+        if (part.startsWith("data: ")) {
+          const json = part.replace("data: ", "");
+          const event = JSON.parse(json);
+          setLog(prev => [...prev, JSON.stringify(event)]);
+        }
+      }
+    }
+  };
 
-// //   return (
-// //     <div style={{ padding: 16 }}>
-// //       <button onClick={start}>Start SSE</button>
-// //       <pre style={{ marginTop: 16, whiteSpace: "pre-wrap" }}>
-// //         {log.join("\n")}
-// //       </pre>
-// //     </div>
-// //   );
-// // }
+  return (
+    <div style={{ padding: 16 }}>
+      <button onClick={start}>Start SSE</button>
+      <pre style={{ marginTop: 16, whiteSpace: "pre-wrap" }}>
+        {log.join("\n")}
+      </pre>
+    </div>
+  );
+}
 
 // 'use client';
 

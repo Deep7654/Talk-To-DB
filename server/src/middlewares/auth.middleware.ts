@@ -8,9 +8,8 @@ import { User } from "../db/models/user.model.js"
 
 const accessTokenSchema = z.object({
   id: z.string(),
-  username: z.string(),
-  email: z.string(),
-}).strict()
+ email :  z.string(),
+}).passthrough()
 
 const authMiddleware = asyncHandler(async(req: Request, res: Response, next: NextFunction) => {
 

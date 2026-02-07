@@ -11,6 +11,9 @@ import {forgetPasswordController,
     signupController,
     verifyUser,
     refreshTokenController} from "../controllers/user/index.js"
+import { dbConnect, dbConnectController, dbCrateTable } from "../controllers/db/dbConnect.controller.js"
+import { agentChat } from "../controllers/agent/aichat.controller.js"
+// import dbConnect from "../db/dbConnect.js"
 
 const router = Router()
 
@@ -19,5 +22,9 @@ const router = Router()
     router.post("/logout" , authMiddleware , logoutController)
     router.post("/getNumber" , authMiddleware , getNumberController)
     router.get("/verify" , verifyUser)
+    router.post("/dbcreate" , dbConnectController)
+    router.post("/dbcreateTable" , dbCrateTable)
+    router.post("/db" , dbConnect)
+    router.post("/agentChat" , authMiddleware , agentChat)
 
 export default router;

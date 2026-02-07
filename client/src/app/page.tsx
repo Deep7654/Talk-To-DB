@@ -1,7 +1,7 @@
 // 'use client';
 
 // import { useState } from 'react';
-// import { ResizableGroup , ResizablePanel  , ResizableHandle } from '@/components/ui/resizable';
+// import { Group , Panel  , Separator } from '@/components/ui/resizable';
 
 // type ToolPart = {
 //   type: 'tool-db' | 'tool-schema';
@@ -46,11 +46,13 @@
 //     setInput('');
 //     setLoading(true);
 
-//     const res = await fetch('http://localhost:4000/api/ai/chat', {
+//     const res = await fetch('http://localhost:4000/api/user/agentChat', {
 //       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' },
+//       headers: { 'Content-Type': 'application/json' ,
+//         'authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODMxYWY2NTU4NzI3MDk1NzdhZWJjOSIsImVtYWlsIjoiZGVlcDE5OTkzMjRAZ21haWwuY29tIiwiaWF0IjoxNzcwMzY4Mzk2LCJleHAiOjE3NzAzNzE5MzZ9.apa4RN8Se0anSd2YpwiN21SC81pklBdbTG8CYjr1LBg`
+//        },
 //       body: JSON.stringify({
-//         messages: [{ role: 'user', content: input }],
+//         message: [{ role: 'user', content: input }],
 //       }),
 //     });
 
@@ -143,8 +145,8 @@
 
 //   return (
 //     <div>
-//       <ResizableGroup  >
-//         <ResizablePanel defaultSize={70} minSize={40}>
+//       <Group  >
+//         <Panel defaultSize={70} minSize={40}>
 //     <div className="max-w-[90%] mx-auto p-6 flex flex-col items-center min-h-screen bg-blue-500">
 //       <h1 className="text-4xl font-semibold mb-4">AI SQL Assistant</h1>
 //       <div className='min-w-3xl m-4 bg-amber-300 '>
@@ -235,27 +237,39 @@
 //       </div>
 //       </div>
 //     </div>
-//         </ResizablePanel>
-//     <ResizableHandle withHandle />
-//     <ResizablePanel defaultSize={30} minSize={450}>
+//         </Panel>
+//     <Separator withHandle />
+//     <Panel defaultSize={30} minSize={450}>
 //         Ai History
-//     </ResizablePanel>
+//     </Panel>
 
-//     </ResizableGroup>
+//     </Group>
 //     </div>
 //   );
 // }
 
 
-'use client'
-export default function ConnectNeon(){
-  const connect=()=>{
-    window.location.href=`${process.env.NEXT_PUBLIC_API_URL}/auth/neon`;
-  };
+// 'use client'
+// export default function ConnectNeon(){
+//   const connect=()=>{
+//     window.location.href=`${process.env.NEXT_PUBLIC_API_URL}/auth/neon`;
+//   };
 
+//   return(
+//     <button onClick={connect}>
+//       Connect Neon
+//     </button>
+//   );
+// }
+
+'use client'
+
+import ProjectHome from "./component/project/ProjectHome";
+
+export default function Home(){
   return(
-    <button onClick={connect}>
-      Connect Neon
-    </button>
+    <div>
+      <ProjectHome/>
+    </div>
   );
 }

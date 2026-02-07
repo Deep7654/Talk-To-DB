@@ -4,6 +4,8 @@ import {z} from "zod"
 import asyncHandler from "../../utils/asyncHandler.js";
 
 
+
+
 const aichats = asyncHandler(
 async(req : any , res : any, next : any)=>{
     try {const { messages } = req.body;
@@ -92,24 +94,24 @@ CREATE TABLE sales (
 }
 )
 
- const getSchemaTool = tool({
+ const getSchema = tool({
     description : "call and use this tool to get database Schema information",
     inputSchema : z.object({}),
     execute : async()=>{
+        
         console.log("db Schema executte");
         return "for now guess a schema of user and password and name"
     }
 })
 
- const getDbCallTool = tool({
+ const getDbCall = tool({
     description : '',
     inputSchema : z.object({
         query : z.string().describe('call and use this tool to call the Database and get the output')
     }),
     execute : ()=>{
-        console.log("db execute run");
-        return 'Select from usser this is dbcall Output '
+        
     }
 })
 
-export { getDbCallTool , getSchemaTool}
+export { getDbCall , getSchema}
